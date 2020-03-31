@@ -8,22 +8,24 @@ heading = file.readlines(1)      #prints out everything on line 1 of the csv fil
 
 
 for line in file.readlines():           #Using a for loop to read the lines of the csv file
-    
-    line_data = line.split(",")     #Using dot split method to convert the strings into a list item so it could worked on
-    
-    #print(line_data[1])            #prints all the data with an index of 1 in the csv file which is the country name
+	
+	line_data = line.split(",")     #Using dot split method to convert the strings into a list item so it could worked on
+	
+	#print(line_data[1])            #prints all the data with an index of 1 in the csv file which is the country name
 
-    country_name = line_data[1]
-    
-    if country_name in choice_countries:     #If country(line_data[1]) is equal to turkey 
-        
-        country_exists = check_country(choice_countries)  #uses the check country function from sql_with_python to get the countries from the database and checking to see if our choice country is present in there
-        #print(country_exists)
+	country_name = line_data[1]
+   
+	if country_name in choice_countries:     #If country(line_data[1]) is equal to Turkey	
+		country_exists = check_country(country_name)
 
-        if country_exists:
-            for data in list(zip(line_data, heading[0].split(",")))[4:]:
-                write_deaths(country_exists[0]["id"], date_format(data[1]), data[0])
-        
-        else:
-            write_countries(country_name, line_data[2], line_data[3])
+		if country_exists:	
+			for data in list(zip(line_data, heading[0].split(",")))[4:]:
+				#print(data)	
+				write_deaths(country_exists[0]['id'], date_format(data[1]), data[0])
+			else:	
+				longitude = line_data[2]	
+				latitude = 	line_data[3]
+				write_countries(country_name, longitude, latitude)
 
+
+		
