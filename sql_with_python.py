@@ -23,7 +23,6 @@ def create_tables():
 
 
 
-
 #Enters the selected countries into the database
 def write_countries(name, longitude, latitude):
 
