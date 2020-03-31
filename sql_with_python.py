@@ -66,6 +66,6 @@ def date_format(date):
     return changed_date
 
 
-create_tables()
+write_countries("Foo", 2.1, 1.1)
 
 
